@@ -331,6 +331,46 @@ void print_board(char** word_array, int width, int height)
     }
 }
 
+void replace_answer(Coordinate** coords, char** word_array, int width, int height)
+{
+    int coord_x, coord_y, i;
+    for (i = 0; i < width * height; i++)
+    {
+        coord_x = coords[i]->x;
+        coord_y = coords[i]->y;
+        if (coord_x == -1)
+        {
+            break;
+        }
+        word_array[coord_y][coord_x] = '*';
+    }
+}
+
+void save_file(Coordinate** coords, char** word_array, int width, int height, char* file_name)
+{
+    int i, j;
+    FILE* fp = fopen(file_name, "wt");
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+            fprintf(fp, "%c ", word_array[i][j]);
+        }
+        fprintf(fp, "\n");
+    }
+    replace_answer(coords, word_array, width, height);
+    fprintf(fp, "\n-------------ANSWER-------------\n\n");
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+            fprintf(fp, "%c ", word_array[i][j]);
+        }
+        fprintf(fp, "\n");
+    }
+    fclose(fp);
+}
+
 int main()
 {
     srand(time(NULL));
@@ -344,10 +384,11 @@ int main()
     char** word_list;
     char* input_word;
     char** word_array;
+    char file_name[51];
     Coordinate** coords;
-    printf("WORD SEARCH 퍼즐 제작기\n");
     while (true)
     {
+        printf("WORD SEARCH 퍼즐 생성기\n");
         printf("가로 길이를 입력하세요(최소 %d, 최대 %d) >> ", minimum, maximum);
         scanf("%d", &width);
         if ((width < minimum) || (width > maximum))
@@ -408,6 +449,9 @@ int main()
         }
         free(word_list);
         print_board(word_array, width, height);
+        printf("저장할 텍스트 파일의 이름을 입력하세요(확장자 포함, 최대 50자, 영어) >> ");
+        scanf("%s", file_name);
+        save_file(coords, word_array, width, height, file_name);
         free_2d_char_array(word_array, width, height);
         free_coordinate_array(coords, width, height);
     }

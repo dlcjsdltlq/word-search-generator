@@ -19,6 +19,17 @@ int random_range(int start, int end)
     return rand() % (end + 1 - start) + start;
 }
 
+void str_upper(char* temp) 
+{
+    char* s = temp;
+    while (*s) 
+    {
+        *s = toupper((unsigned char)*s);
+        s++;
+    }
+
+}
+
 Coordinate** make_coordinate_array(int width, int height)
 {
     Coordinate** coords = (Coordinate**)malloc(sizeof(Coordinate*) * width * height);
@@ -371,6 +382,7 @@ void save_file(Coordinate** coords, char** word_array, int width, int height, ch
     fclose(fp);
 }
 
+
 int main()
 {
     srand(time(NULL));
@@ -410,6 +422,7 @@ int main()
         {
             printf("단어를 입력하세요 (%d개 입력 가능, 최대 길이는 %d, 없으면 QQUIT) >> ", min_length - i, min_length);
             scanf("%s", input_word);
+            str_upper(input_word);
             if (strcmp(input_word, "QQUIT") == 0)
             {
                 list_length = i;

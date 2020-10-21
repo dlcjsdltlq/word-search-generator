@@ -325,7 +325,8 @@ void make_board(char** word_array, int width, int height)
 {
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width; j++) {
+        for (int j = 0; j < width; j++) 
+        {
             word_array[i][j] = (char)random_range(65, 90);
         }
     }
@@ -335,7 +336,8 @@ void print_board(char** word_array, int width, int height)
 {
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width; j++) {
+        for (int j = 0; j < width; j++) 
+        {
             printf("%c ", word_array[i][j]);
         }
         printf("\n");

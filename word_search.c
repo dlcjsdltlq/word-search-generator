@@ -345,21 +345,21 @@ int main()
     char* input_word;
     char** word_array;
     Coordinate** coords;
-    printf("WORD SEARCH ÇĞ½ÀÁö Á¦ÀÛ±â\n");
+    printf("WORD SEARCH í¼ì¦ ì œì‘ê¸°\n");
     while (true)
     {
-        printf("°¡·Î ±æÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä(ÃÖ¼Ò %d, ÃÖ´ë %d) >> ", minimum, maximum);
+        printf("ê°€ë¡œ ê¸¸ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš”(ìµœì†Œ %d, ìµœëŒ€ %d) >> ", minimum, maximum);
         scanf("%d", &width);
         if ((width < minimum) || (width > maximum))
         {
-            printf("°ªÀÌ ³Ê¹« ÀÛ°Å³ª Å®´Ï´Ù");
+            printf("ê°’ì´ ë„ˆë¬´ ì‘ê±°ë‚˜ í½ë‹ˆë‹¤");
             continue;
         }
-        printf("¼¼·Î ±æÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä(ÃÖ´ë %d, ÃÖ´ë %d) >> ", minimum, maximum);
+        printf("ì„¸ë¡œ ê¸¸ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš”(ìµœëŒ€ %d, ìµœëŒ€ %d) >> ", minimum, maximum);
         scanf("%d", &height);
         if ((height < minimum) || (height > maximum))
         {
-            printf("°ªÀÌ ³Ê¹« ÀÛ°Å³ª Å®´Ï´Ù");
+            printf("ê°’ì´ ë„ˆë¬´ ì‘ê±°ë‚˜ í½ë‹ˆë‹¤");
             continue;
         }
         int min_length = width < height ? width : height;
@@ -367,7 +367,7 @@ int main()
         input_word = malloc(sizeof(char) * min_length);
         for (int i = 0; i < min_length; i++)
         {
-            printf("´Ü¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä (%d°³ ÀÔ·Â °¡´É, ÃÖ´ë ±æÀÌ´Â %d, ¾øÀ¸¸é QQUIT) >> ", min_length - i, min_length);
+            printf("ë‹¨ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš” (%dê°œ ì…ë ¥ ê°€ëŠ¥, ìµœëŒ€ ê¸¸ì´ëŠ” %d, ì—†ìœ¼ë©´ QQUIT) >> ", min_length - i, min_length);
             scanf("%s", input_word);
             if (strcmp(input_word, "QQUIT") == 0)
             {
@@ -376,7 +376,7 @@ int main()
             }
             if (strlen(input_word) > min_length)
             {
-                printf("´Ü¾î°¡ ³Ê¹« ±é´Ï´Ù\n");
+                printf("ë‹¨ì–´ê°€ ë„ˆë¬´ ê¹ë‹ˆë‹¤\n");
                 list_length = i;
                 break;
             }
